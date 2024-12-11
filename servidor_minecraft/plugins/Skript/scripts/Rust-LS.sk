@@ -1,0 +1,771 @@
+#Author: Lafargue Skripts
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                            OPTIONS                                                       #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#     
+
+options:
+    version: 1.0
+
+	
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                          FUNCTIONS                                                       #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#   
+
+function craftingPanel(p: player):
+    open chest with 5 rows named "%{config::panel_crafting_title}%" to {_p}
+    loop 54 times:
+        set slot loop-number -1 of {_p}'s current inventory to Gray Stained Glass Pane named " "
+    loop 3 times:
+        set slot 23 of {_p}'s current inventory to Air named " "
+        set slot 21 of {_p}'s current inventory to Orange Stained Glass Pane named " "
+        wait 2 ticks
+        set slot 21 of {_p}'s current inventory to Air named " " 
+        set slot 22 of {_p}'s current inventory to Orange Stained Glass Pane named " " 
+        wait 2 ticks
+        set slot 22 of {_p}'s current inventory to Air named " " 
+        set slot 23 of {_p}'s current inventory to Orange Stained Glass Pane named " " 
+        wait 2 ticks
+    set slot 21 of {_p}'s current inventory to Air named " " 
+    set slot 22 of {_p}'s current inventory to Air named " "
+    set slot 23 of {_p}'s current inventory to Air named " "
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                            CONFIG                                                        #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#  
+
+
+on place a tnt:
+    play sound "entity.tnt.primed" at location 5 meters above player to all the players
+    loop 5 times:
+        play sound "block.stone_button.click_on" at location 5 meters above player to all the players
+        wait 20 ticks
+    loop blocks in radius 3 of event-block:
+        create a fake explosion at loop-value
+        set event-block to air
+
+        if loop-value is cracked stone bricks or wood plank:
+            set loop-value to air
+        if loop-value is stone bricks:
+            set loop-value to cracked stone bricks
+
+        if loop-value is tuff:
+            set loop-value to air
+        if loop-value is cracked deepslate bricks:
+            set loop-value to tuff
+        if loop-value is deepslate bricks:
+            set loop-value to cracked deepslate bricks
+
+
+
+
+
+
+        
+
+function createConfig():
+    message "&8&l&m---------------------------------------------" to the console
+    message "&aRust-LS&8: &6version: {@version}" to the console
+    message "&aRust-LS&8:&7 Checking folders..." to the console
+#Config.yml
+    set {_prefix} to yaml value "Prefix" from file "plugins/Rust/Config.yml"
+    if {_prefix} isn't set:
+        message "&aRust-LS&8:&7 Config.yml &cnot found&7, creating it." to the console
+        set yaml value "Prefix" from file "plugins/Rust/Config.yml" to " &aRust-LS&8:&7"
+        set yaml value "World" from file "plugins/Rust/Config.yml" to "world"
+        set yaml value "Scoreboard.Status" from file "plugins/Rust/Config.yml" to "True"
+        set yaml value "Scoreboard.Update" from file "plugins/Rust/Config.yml" to "10 seconds"
+#Scoreboard.yml
+    set {_scoreboard.title} to yaml value "Scoreboard.Title" from file "plugins/Rust/Scoreboard.yml"
+    if {_scoreboard.title} isn't set:
+        message "&aRust-LS&8:&7 Scoreboard.yml &cnot found&7, creating it." to the console
+        set yaml value "Scoreboard.Title" from file "plugins/Rust/Scoreboard.yml" to "&a&lRust-LS"
+        set yaml value "Scoreboard.Line-1" from file "plugins/Rust/Scoreboard.yml" to "&1"
+        set yaml value "Scoreboard.Line-2" from file "plugins/Rust/Scoreboard.yml" to "&8» &9Profile"
+        set yaml value "Scoreboard.Line-3" from file "plugins/Rust/Scoreboard.yml" to "&aKills&8:"
+        set yaml value "Scoreboard.Line-4" from file "plugins/Rust/Scoreboard.yml" to "&aDeaths&8:"
+        set yaml value "Scoreboard.Line-5" from file "plugins/Rust/Scoreboard.yml" to "&aFarming&8:"
+        set yaml value "Scoreboard.Line-6" from file "plugins/Rust/Scoreboard.yml" to "&2"
+        set yaml value "Scoreboard.Line-7" from file "plugins/Rust/Scoreboard.yml" to "&aLevel&8:"
+        set yaml value "Scoreboard.Line-8" from file "plugins/Rust/Scoreboard.yml" to "&aProgress&8:"
+        set yaml value "Scoreboard.Line-9" from file "plugins/Rust/Scoreboard.yml" to "&3"
+        set yaml value "Scoreboard.Line-10" from file "plugins/Rust/Scoreboard.yml" to "&aRadiation&8:"
+        set yaml value "Scoreboard.Line-11" from file "plugins/Rust/Scoreboard.yml" to "&4"
+        set yaml value "Scoreboard.Line-12" from file "plugins/Rust/Scoreboard.yml" to "&8by &9Lafargue Skripts"
+#Lang.yml
+    set {_nopermissions} to yaml value "Messages.NoPermission" from file "plugins/Rust/Lang.yml"
+    if {_nopermissions} isn't set:
+        message "&aRust-LS&8:&7 Lang.yml &cnot found&7, creating it." to the console
+        set yaml value "Messages.NoPermission" from file "plugins/Rust/Lang.yml" to "&7You don't have enought permissions to do that."
+        set yaml value "Panel.Crafting.Title" from file "plugins/Rust/Lang.yml" to "&8Crafting..."
+        set yaml value "Messages.Warning.Pickaxe_needed" from file "plugins/Rust/Lang.yml" to "&7You need a pickaxe to mine that."
+        set yaml value "Messages.Warning.Axe_needed" from file "plugins/Rust/Lang.yml" to "&7You need an axe to cut down that."
+        set yaml value "Messages.Warning.Shears_needed" from file "plugins/Rust/Lang.yml" to "&7You need a pair of shears to cut down that."
+        set yaml value "Messages.Warning.Too_far" from file "plugins/Rust/Lang.yml" to "&7You're too far to perform this action."
+        set yaml value "Messages.Placing.Plank_placed" from file "plugins/Rust/Lang.yml" to "&7You placed a wood plank&8:"
+        set yaml value "Messages.Warning.Max_planks_placed" from file "plugins/Rust/Lang.yml" to "&7You can't place more wood planks ! &8(&cMax&8)"
+        set yaml value "Messages.Placing.Ironblock_placed" from file "plugins/Rust/Lang.yml" to "&7You placed an iron block&8:"
+        set yaml value "Messages.Warning.Max_ironblocks_placed" from file "plugins/Rust/Lang.yml" to "&7You can't place more iron blocks ! &8(&cMax&8)"
+        set yaml value "Messages.Warning.Consumed_tool" from file "plugins/Rust/Lang.yml" to "&7You consumed your tool."
+        set yaml value "Messages.Crafting.Successfully" from file "plugins/Rust/Lang.yml" to "&7You crafted successfully&8:&6"
+        set yaml value "Messages.Crafting.Requirements_needed" from file "plugins/Rust/Lang.yml" to "&7You don't have all the requirements to craft that."
+        set yaml value "Messages.Crafting.Space_needed" from file "plugins/Rust/Lang.yml" to "&7You need more space in your inventory."
+    message "&8&l&m---------------------------------------------" to the console
+		
+function loadConfig():
+    message "&8&l&m---------------------------------------------" to the console
+    message "&aRust-LS&8:&7 Checking data..." to the console
+#Config.yml
+    message "&aRust-LS&8:&7 Config.yml successfully loaded." to the console
+    set {config::prefix} to yaml value "Prefix" from file "plugins/Rust/Config.yml"
+    set {config::world} to yaml value "World" from file "plugins/Rust/Config.yml"
+    set {config::scoreboard_status} to yaml value "Scoreboard.Status" from file "plugins/Rust/Config.yml"
+    set {config::scoreboard_update} to yaml value "Scoreboard.Update" from file "plugins/Rust/Config.yml"
+
+#Scoreboard.yml
+    message "&aRust-LS&8:&7 Scoreboard.yml successfully loaded." to the console
+    set {config::scoreboard.title} to yaml value "Scoreboard.Title" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line1} to yaml value "Scoreboard.Line-1" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line2} to yaml value "Scoreboard.Line-2" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line3} to yaml value "Scoreboard.Line-3" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line4} to yaml value "Scoreboard.Line-4" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line5} to yaml value "Scoreboard.Line-5" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line6} to yaml value "Scoreboard.Line-6" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line7} to yaml value "Scoreboard.Line-7" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line8} to yaml value "Scoreboard.Line-8" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line9} to yaml value "Scoreboard.Line-9" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line10} to yaml value "Scoreboard.Line-10" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line11} to yaml value "Scoreboard.Line-11" from file "plugins/Rust/Scoreboard.yml"
+    set {config::scoreboard.line12} to yaml value "Scoreboard.Line-12" from file "plugins/Rust/Scoreboard.yml"
+#Lang.yml
+    message "&aRust-LS&8:&7 Lang.yml successfully loaded." to the console
+    set {config::nopermissions} to yaml value "Messages.NoPermission" from file "plugins/Rust/Lang.yml"
+    set {config::panel_crafting_title} to yaml value "Panel.Crafting.Title" from file "plugins/Rust/Lang.yml"
+    set {config::pickaxe_needed} to yaml value "Messages.Warning.Pickaxe_needed" from file "plugins/Rust/Lang.yml"
+    set {config::axe_needed} to yaml value "Messages.Warning.Axe_needed" from file "plugins/Rust/Lang.yml"
+    set {config::shears_needed} to yaml value "Messages.Warning.Shears_needed" from file "plugins/Rust/Lang.yml"
+    set {config::too_far} to yaml value "Messages.Warning.Too_far" from file "plugins/Rust/Lang.yml"
+    set {config::plank_placed} to yaml value "Messages.Placing.Plank_placed" from file "plugins/Rust/Lang.yml"
+    set {config::max_planks_placed} to yaml value "Messages.Warning.Max_planks_placed" from file "plugins/Rust/Lang.yml"
+    set {config::ironblock_placed} to yaml value "Messages.Placing.Ironblock_placed" from file "plugins/Rust/Lang.yml"
+    set {config::max_ironblocks_placed} to yaml value "Messages.Warning.Max_ironblocks_placed" from file "plugins/Rust/Lang.yml"
+    set {config::consumed_tool} to yaml value "Messages.Warning.Consumed_tool" from file "plugins/Rust/Lang.yml"
+    set {config::crafting_succ} to yaml value "Messages.Crafting.Successfully" from file "plugins/Rust/Lang.yml"
+    set {config::crafting_requirements_needed} to yaml value "Messages.Crafting.Requirements_needed" from file "plugins/Rust/Lang.yml"
+    set {config::crafting_space_needed} to yaml value "Messages.Crafting.Space_needed" from file "plugins/Rust/Lang.yml"
+    message "&8&l&m---------------------------------------------" to the console
+	
+on skript start:
+    createConfig()
+    wait 5 seconds
+    loadConfig()
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                             COMMANDS                                                     #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================# 
+
+command /rust [<text>] [<number>]:
+    aliases: /ru
+    trigger:
+        if argument-1 isn't set:
+            if player has permission "rust.admin":
+                make player execute command "/rust help"
+                stop
+            else:
+                make player execute command "/rust info"
+                stop
+        if argument-1 is "help":
+            if player has permission "rust.admin":
+                message "&a&l»»——————— &6&lRUST LS &a&l———————««"
+                message "&7Available Commands:"
+                message ""
+                message " &6» &e/rust help &7- &fDisplays this list of commands."
+                message " &6» &e/rust info &7- &fShows plugin information."
+                message " &6» &e/rust set spawn &7- &fSets the spawn point."
+                message " &6» &e/rust spawn &7- &fTeleports to the spawn point."
+                message " &6» &e/rust play &7- &fStarts a new game."
+                message " &6» &e/rust reload &7- &fReloads the configuration."
+                message " &6» &e/rust addspawn &7- &fAdds a new spawn location."
+                message " &6» &e/rust listspawns &7- &fLists all defined spawn locations."
+                message " &6» &e/rust removelastspawn &7- &fRemoves the last defined spawn location."
+                message ""
+                message "&a&l»»———————————————————————««"
+                stop
+            else:
+                message "{config::prefix} {config::nopermissions}"
+                stop
+        if argument-1 is "info" or "version" or "author":
+            message "&a&l»»——————— &6&lRUST LS &a&l———————««"
+            message ""
+            message "&8• &7Author: &aLafargue Skripts"
+            message "&8• &7Version: &61.0"
+            message ""
+            message "&a&l»»———————————————————————««"
+            stop
+        if argument-1 is "reload":
+            if player has permission "rust.admin":
+                message "%{config::prefix}% Rust LS settings are now loading..."
+                createConfig()
+                wait 2 seconds
+                loadConfig()
+                message "%{config::prefix}% Rust LS settings are now updated."
+                stop
+            else:
+                message "%{config::prefix}% %{config::nopermissions}%"
+                stop
+        if argument-1 is "addspawn":
+            if player has permission "rust.admin":
+                if yaml value "Spawns.spawn-0" from file "plugins/Rust/Locations.yml" does not exist:
+                    set {_spawnName} to "spawn-0"
+                    set yaml value "Spawns.%{_spawnName}%.World" from file "plugins/Rust/Locations.yml" to "%player's world%"
+                    set yaml value "Spawns.%{_spawnName}%.X" from file "plugins/Rust/Locations.yml" to ("%x-coord of player%" parsed as number)
+                    set yaml value "Spawns.%{_spawnName}%.Y" from file "plugins/Rust/Locations.yml" to ("%y-coord of player%" parsed as number)
+                    set yaml value "Spawns.%{_spawnName}%.Z" from file "plugins/Rust/Locations.yml" to ("%z-coord of player%" parsed as number)
+                    message "%{config::prefix}% Spawn point added successfully at your current location!"
+                else:
+                    set {_index} to 0
+                    while yaml value "Spawns.spawn-%{_index}%" from file "plugins/Rust/Locations.yml" exist:
+                        add 1 to {_index}
+                    set {_spawnName} to "spawn-%{_index}%"
+                    set yaml value "Spawns.%{_spawnName}%.World" from file "plugins/Rust/Locations.yml" to "%player's world%"
+                    set yaml value "Spawns.%{_spawnName}%.X" from file "plugins/Rust/Locations.yml" to ("%x-coord of player%" parsed as number)
+                    set yaml value "Spawns.%{_spawnName}%.Y" from file "plugins/Rust/Locations.yml" to ("%y-coord of player%" parsed as number)
+                    set yaml value "Spawns.%{_spawnName}%.Z" from file "plugins/Rust/Locations.yml" to ("%z-coord of player%" parsed as number)
+                    message "%{config::prefix}% Spawn point added successfully at your current location!"
+            else:
+                message "%{config::prefix}% %{config::nopermissions}%"
+                stop
+        if argument-1 is "removespawn":
+            if argument-2 is set:
+                if player has permission "rust.admin":
+                    set {_spawns::*} to yaml list "Spawns" from file "plugins/Rust/Locations.yml"
+                    set {_index} to argument-2
+                    if yaml value "Spawns.spawn-%{_index}%" from file "plugins/Rust/Locations.yml" exist:
+                        set {_spawnName} to "spawn-%{_index}%"
+                        delete yaml value "Spawns.{_spawnName}.World" from file "plugins/Rust/Locations.yml"
+                        message "%{config::prefix}% &aThe last spawn point has been successfully removed."
+                    else:
+                        message "%{config::prefix}% &cNo spawn points to remove."
+                else:
+                    message "%{config::prefix}% %{config::nopermissions}%"
+                    stop
+
+
+
+        if argument-1 is "addmine":
+            if argument-2 is 1:
+                if player has permission "rust.admin":
+                    add BREEZE ROD named "&aCreate Mine of &7Stone" to player
+            if argument-2 is 2:
+                if player has permission "rust.admin":
+                    add BREEZE ROD named "&aCreate Mine of &9Metal" to player
+            if argument-2 is 3:
+                if player has permission "rust.admin":
+                    add BREEZE ROD named "&aCreate Mine of &6Zulfur" to player
+
+
+        if argument-1 is "join" or "play":
+            if player has permission "rust.player":
+                set player's gamemode to SURVIVAL
+                add a workbench to player's inventory
+                add a wooden axe to the player's inventory
+                add 2 bread to the player's inventory
+                randomSpawn(player)
+            else:
+                message "%{config::prefix}% %{config::nopermissions}%"
+                stop
+
+
+function randomSpawn(p: player):
+    if yaml value "Spawns.spawn-0" from file "plugins/Rust/Locations.yml" exist:
+        set {_index} to 0
+        set {_spawnName} to "spawn-%{_index}%"
+        while yaml value "Spawns.spawn-%{_index}%" from file "plugins/Rust/Locations.yml" exist:
+            add {_index} to {_spawn::*}
+            add 1 to {_index}
+
+        set {_randomSpawn} to random element of {_spawn::*}
+        set {_spawnName} to "spawn-%{_randomSpawn}%"
+
+        set {_world} to yaml value "Spawns.%{_spawnName}%.World" from file "plugins/Rust/Locations.yml"
+        set {_x} to yaml value "Spawns.%{_spawnName}%.X" from file "plugins/Rust/Locations.yml"
+        set {_y} to yaml value "Spawns.%{_spawnName}%.Y" from file "plugins/Rust/Locations.yml"
+        set {_z} to yaml value "Spawns.%{_spawnName}%.Z" from file "plugins/Rust/Locations.yml"
+
+        set {_world} to {_world} parsed as world
+        teleport {_p} to location at {_x}, {_y}, {_z} in world {_world}
+        message "&aYou have been teleported to a random spawn point!" to {_p}
+    else:
+        message "%{config::prefix}% &cAun no se han creado los spawns aleatorios" to {_p}
+        stop
+
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                            RESOURCES                                                     #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================#
+
+
+
+function addMineYAML(l: location, t: text, p: player):
+    if {_t} is "stone":
+        if yaml value "Mines.Mines-Stone.Mine-0" from file "plugins/Rust/Mines.yml" does not exist:
+            set {_mineOre} to "Mine-0"
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+        else:
+            set {_index} to 0
+            while yaml value "Mines.Mines-Stone.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+                add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Stone.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+    if {_t} is "metal":
+        if yaml value "Mines.Mines-Metal.Mine-0" from file "plugins/Rust/Mines.yml" does not exist:
+            set {_mineOre} to "Mine-0"
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+        else:
+            set {_index} to 0
+            while yaml value "Mines.Mines-Metal.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+                add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Metal.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+    if {_t} is "zulfur":
+        if yaml value "Mines.Mines-Zulfur.Mine-0" from file "plugins/Rust/Mines.yml" does not exist:
+            set {_mineOre} to "Mine-0"
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+        else:
+            set {_index} to 0
+            while yaml value "Mines.Mines-Zulfur.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+                add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml" to "%{_l}'s world%"
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml" to ("%x-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml" to ("%y-coord of {_l}%" parsed as number)
+            set yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml" to ("%z-coord of {_l}%" parsed as number)
+            message "%{config::prefix}% Spawn point added successfully at your current location!" to {_p}
+
+
+every 15 minutes:
+    if yaml value "Mines.Mines-Stone.Mine-0" from file "plugins/Rust/Mines.yml" exist:
+        set {_index} to 0
+        set {_mineOre} to "Mine-%{_index}%"
+        while yaml value "Mines.Mines-Stone.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+            set {_world} to yaml value "Mines.Mines-Stone.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml"
+            set {_x} to yaml value "Mines.Mines-Stone.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml"
+            set {_y} to yaml value "Mines.Mines-Stone.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml"
+            set {_z} to yaml value "Mines.Mines-Stone.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml"
+            set {_loc} to location at {_x}, {_y}, {_z} in world {_world}
+            createMine({_loc}, STONE)
+            add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+    else:
+        stop
+    if yaml value "Mines.Mines-Metal.Mine-0" from file "plugins/Rust/Mines.yml" exist:
+        set {_index} to 0
+        set {_mineOre} to "Mine-%{_index}%"
+        while yaml value "Mines.Mines-Metal.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+            set {_world} to yaml value "Mines.Mines-Metal.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml"
+            set {_x} to yaml value "Mines.Mines-Metal.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml"
+            set {_y} to yaml value "Mines.Mines-Metal.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml"
+            set {_z} to yaml value "Mines.Mines-Metal.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml"
+            set {_loc} to location at {_x}, {_y}, {_z} in world {_world}
+            createMine({_loc}, IRON ORE)
+            add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+    else:
+        stop
+    if yaml value "Mines.Mines-Zulfur.Mine-0" from file "plugins/Rust/Mines.yml" exist:
+        set {_index} to 0
+        set {_mineOre} to "Mine-%{_index}%"
+        while yaml value "Mines.Mines-Zulfur.Mine-%{_index}%" from file "plugins/Rust/Mines.yml" exist:
+            set {_world} to yaml value "Mines.Mines-Zulfur.%{_mineOre}%.World" from file "plugins/Rust/Mines.yml"
+            set {_x} to yaml value "Mines.Mines-Zulfur.%{_mineOre}%.X" from file "plugins/Rust/Mines.yml"
+            set {_y} to yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Y" from file "plugins/Rust/Mines.yml"
+            set {_z} to yaml value "Mines.Mines-Zulfur.%{_mineOre}%.Z" from file "plugins/Rust/Mines.yml"
+            set {_loc} to location at {_x}, {_y}, {_z} in world {_world}
+            createMine({_loc}, GOLD ORE)
+            add 1 to {_index}
+            set {_mineOre} to "Mine-%{_index}%"
+    else:
+        stop
+
+
+
+
+on rightclick:
+    if event-world is "%{config::world}%":
+        if event-block is CRAFTING TABLE:
+            cancel the event
+            openRecipesDefault(player, 1)
+        if event-block is not short grass or top-half double tall grass or oxeye daisy or cornflower or dandelion or poppy or azure bluet or air or water:
+            if player's tool is BREEZE ROD named "&aCreate Mine of &7Stone":
+                set {_loc} to event-block's position
+                if verificZone(event-block's position, player) is true:
+                    createMine(event-block's position, STONE)
+                    addMineYAML(event-block's position, "stone", player)
+                else:
+                    message "&cZona invalida" to player
+            if player's tool is BREEZE ROD named "&aCreate Mine of &9Metal":
+                set {_loc} to event-block's position
+                if verificZone(event-block's position, player) is true:
+                    createMine(event-block's position, IRON ORE)
+                    addMineYAML(event-block's position, "metal", player)
+                else:
+                    message "&cZona invalida" to player
+            if player's tool is BREEZE ROD named "&aCreate Mine of &6Zulfur":
+                set {_loc} to event-block's position
+                if verificZone(event-block's position, player) is true:
+                    createMine(event-block's position, GOLD ORE)
+                    addMineYAML(event-block's position, "zulfur", player)
+                else:
+                    message "&cZona invalida" to player
+# ELIMINAR->
+        if player's tool is STICK:
+            if event-block is a block:
+                set {_b} to block at event-block
+                message "%{_b}%" to player
+#<-
+
+function createMine(l: location, b: item):
+    set block above {_l} to {_b}
+    set block 2 above {_l} to {_b}
+    set block south above {_l} to {_b}
+    set block south 2 above {_l} to {_b}
+    set block southwest above {_l} to {_b}
+    set block southwest 2 above {_l} to {_b}
+    set block west above {_l} to {_b}
+    set block west 2 above {_l} to {_b}
+    set block 2 west above {_l} to {_b}
+    set block 2 west 1 south above {_l} to {_b}
+
+
+function verificZone(l: location, p: player) :: boolean:
+    set {_loc} to {_l}'s position
+    set {_pos1} to location above {_loc}
+    set {_block1} to block at {_pos1}
+    set {_pos2} to location 2 above {_loc}
+    set {_block2} to block at {_pos2}
+    set {_pos3} to location south above {_loc}
+    set {_block3} to block at {_pos3}
+    set {_pos4} to location south 2 above {_loc}
+    set {_block4} to block at {_pos4}
+    set {_pos5} to location southwest above {_loc}
+    set {_block5} to block at {_pos5}
+    set {_pos6} to location southwest 2 above {_loc}
+    set {_block6} to block at {_pos6}
+    set {_pos7} to location west above {_loc}
+    set {_block7} to block at {_pos7}
+    set {_pos8} to location west 2 above {_loc}
+    set {_block8} to block at {_pos8}
+    set {_pos9} to location 2 west above {_loc}
+    set {_block9} to block at {_pos9}
+    set {_pos10} to location 2 west 1 south above {_loc}
+    set {_block10} to block at {_pos10}
+    if {_block1} is not air:
+        return false
+    if {_block2} is not air:
+        return false
+    if {_block3} is not air:
+        return false
+    if {_block4} is not air:
+        return false
+    if {_block5} is not air:
+        return false
+    if {_block6} is not air:
+        return false
+    if {_block7} is not air:
+        return false
+    if {_block8} is not air:
+        return false
+    if {_block9} is not air:
+        return false
+    if {_block10} is not air:
+        return false
+    message "&aZona valida" to {_p}
+    return true
+
+on leaves decay:
+    if event-world is "%{config::world}%":
+        cancel the event
+	
+on explosion:
+    if event-world is "%{config::world}%":
+        cancel the event
+
+# eliminar ->
+command /gm [<text>]:
+	executable by: player
+	trigger:
+		if arg-1 is "0":
+			set gamemode of player to survival
+		if arg-1 is "1":
+			set gamemode of player to creative
+		if arg-1 is "3":
+			set gamemode of player to spectator
+# <-
+
+
+on break:
+    if event-world is "%{config::world}%":
+        if player's gamemode is SURVIVAL:
+            if event-block is OAK PLANKS:
+                if {block.%event-block's location%} is set:
+                    if {block.%event-block's location%} is not player's name:
+                        cancel event
+                        send "&cThis block belongs to: %{block.%event-block's location%}%" to player
+                    else:
+                        delete {block.%event-block's location%}
+            if event-block is COBBLESTONE, COAL ORE or IRON ORE:
+                cancel the event
+                set event-block to air
+                if event-block is COBBLESTONE:
+                    drop 1 of COBBLESTONE at location of event-block
+                if event-block is IRON ORE:
+                    drop 1 of RAW IRON named "&fMetal Ore" at location of event-block
+                    chance of 15%:
+                        drop 1 of NETHERITE SCRAP named "&fHigh Quality Metal Ore" at location of event-block
+                if event-block is ANY LOG:
+                    drop 1 of OAK LOG named "&fLog" at location of event-block
+
+
+
+# BLOCKS PROTECTIONS
+
+on place:
+	if event-world is "%{config::world}%":
+		if player's gamemode is SURVIVAL:
+			if event-block is OAK PLANKS:
+				set {block.%event-block's location%} to player's name
+			else:
+				cancel the event
+				stop
+
+
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                              Scoreboard                                                  #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================# 
+
+
+function createBoard(p: player, t: text, size: integer = 15):
+    add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9" and "&f" to {_d::*}
+    if stylish scoreboard "%{_t}%-%{_p}%" does not exist:
+        create new stylish scoreboard named "%{_t}%-%{_p}%"
+        loop {_size} times:
+            create a new id based score "%{_p}%Slot%loop-number%" with text "%{_d::%loop-number%}%" slot loop-number for stylish scoreboard "%{_t}%-%{_p}%"
+			
+function deleteBoard(p: player, t: text):  
+    loop 15 times:
+        delete the id based score "%{_p}%Slot%loop-number%" in stylish scoreboard "%{_t}%-%{_p}%"
+    delete stylish scoreboard "%{_t}%-%{_p}%"
+	
+function setSlot(p: player, board: text, slot: integer, t: text):
+    add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9" and "&f" to {_d::*}
+    if {_slot} is between 1 and 15:
+        set text of id "%{_p}%Slot%{_slot}%" to "%{_d::%{_slot}%}%%{_t}%"
+
+on disconnect:
+    deleteBoard(player, "%player%")
+	
+on join:
+    if {config::scoreboard_status} is "True":
+        createBoard(player , "%player%", 12)
+        set {_delay} to "%{config::scoreboard_update}%" parsed as timespan
+        set title of stylish scoreboard "%player%-%player%" to "%{config::scoreboard.title}%"
+        set stylish scoreboard of player to "%player%-%player%"
+        wait 1 tick
+        while player is online:
+            if event-world is "%{config::world}%":
+                if stylish scoreboard "%player%-%player%" exist:
+                    setSlot(player , "%player%", 12, "%{config::scoreboard.line1}%")
+                    setSlot(player , "%player%", 11, "%{config::scoreboard.line2}%")
+                    setSlot(player , "%player%", 10, "%{config::scoreboard.line3}% &7%{rustz::%uuid of player%::profile::kills}%")
+                    setSlot(player , "%player%", 9, "%{config::scoreboard.line4}% &7%{rustz::%uuid of player%::profile::deaths}%")
+                    setSlot(player , "%player%", 8, "%{config::scoreboard.line5}% &7%{rustz::%uuid of player%::profile::farm}%")
+                    setSlot(player , "%player%", 7, "%{config::scoreboard.line6}%")
+                    setSlot(player , "%player%", 6, "%{config::scoreboard.line7}% &6%{rustz::%uuid of player%::profile::level}%")
+                    setSlot(player , "%player%", 5, "%{config::scoreboard.line8}% &7%{rustz::%uuid of player%::profile::exp}%&8/%{rustz::%uuid of player%::profile::exp_needed}%")
+                    setSlot(player , "%player%", 4, "%{config::scoreboard.line9}%")
+                    setSlot(player , "%player%", 3, "%{config::scoreboard.line10}% &c%{rustz::%uuid of player%::profile::radiation}%")
+                    setSlot(player , "%player%", 2, "%{config::scoreboard.line11}%")
+                    setSlot(player , "%player%", 1, "%{config::scoreboard.line12}%")
+                else:
+                    createBoard(player , "%player%", 12)
+                    set title of stylish scoreboard "%player%-%player%" to "%{config::scoreboard.title}%"
+                    set stylish scoreboard of player to "%player%-%player%"
+            else:
+                if stylish scoreboard "%player%-%player%" exist:
+                    deleteBoard(player, "%player%")
+            wait {_delay}
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                              CRAFTING                                                    #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================# 
+
+
+function openRecipesDefault(p: player, page: integer):
+    if {_page} is 1:
+        open chest with 1 rows named "&9Workbench" to {_p}
+        
+        # Agregar decoraciones para un diseño más limpio
+        set slot 0 of {_p}'s current inventory to iron axe named "&a&lTools" with lore "&8&l» &7Craft tools to survive!" and " &8● Use these tools to gather resources and protect yourself!" and "&aClick to open!" 
+        set slot 1 of {_p}'s current inventory to string named "&a&lMaterials" with lore "&8&l» &7Gather materials to raid bases!" and " &8● All materials needed for raiding" and "&aClick to open!"
+        set slot 2 of {_p}'s current inventory to arrow named "&a&lAmmo" with lore "&8&l» &7Stockpile ammo to defend yourself!" and " &8● All ammunition needed for defense" and "&aClick to open!"
+        set slot 3 of {_p}'s current inventory to iron sword named "&a&lWeapons" with lore "&8&l» &7Craft weapons for your adventures!" and " &8● Tools to protect yourself" and "&aClick to open!"
+        set slot 4 of {_p}'s current inventory to diamond chestplate named "&a&lArmors" with lore "&8&l» &7Protect yourself with armor!" and " &8● Durable protection for your journeys" and "&aClick to open!"
+        set slot 5 of {_p}'s current inventory to oak planks named "&a&lBuilding Blocks" with lore "&8&l» &7Build your base and structures!" and " &8● Materials for construction" and "&aClick to open!"
+        set slot 6 of {_p}'s current inventory to tnt named "&a&lExplosives" with lore "&8&l» &7Tactical explosives for raids!" and " &8● All explosives for destruction" and "&aClick to open!"
+
+    if {_page} is 2:
+        open chest with 4 rows named "&8&lTools" to {_p}
+        set slot 0 of {_p}'s current inventory to fishing rod named "&6&lFishing Rod" with lore "&8Use it to catch fish and gather resources." and " " and "&8&l» &9Requirements&8:" and " &8● &7Wood: 12x" and " &8● &7Stick: 2x" and " " and "&aClick to craft!"
+
+    if {_page} is 3:
+        open chest with 4 rows named "&8Materials" to {_p}
+
+    if {_page} is 4:
+        open chest with 4 rows named "&8Ammo" to {_p}
+
+    if {_page} is 5:
+        open chest with 4 rows named "&8Weapons" to {_p}
+
+    if {_page} is 6:
+        open chest with 4 rows named "&8Armors" to {_p}
+
+    if {_page} is 7:
+        open chest with 4 rows named "&8Building Blocks" to {_p}
+
+    if {_page} is 8:
+        open chest with 4 rows named "&8Explosives" to {_p}
+
+
+
+on inventory click:
+    if inventory name of player's current inventory is "%{config::panel_crafting_title}%":
+        cancel event
+    set {_item} to uncolored name of clicked item
+    set {_item} to {_item} parsed as item
+#WORKBENCH
+    if inventory name of player's current inventory is "&9Workbench":
+        cancel event
+        if clicked slot is 0:
+            openRecipesDefault(player, 2)
+        if clicked slot is 13:
+            openRecipesDefault(player, 3)
+        if clicked slot is 30:
+            openRecipesDefault(player, 4)
+        if clicked slot is 32:
+            openRecipesDefault(player, 5)
+        if clicked slot is 16:
+            openRecipesDefault(player, 6)
+    if inventory name of player's current inventory is "&8Tools":
+        cancel event
+        if name of clicked item is " ":
+            if player's target block is workbench:
+                openRecipesDefault(player, 1)
+        else:
+            if name of clicked item contains "&6&nIron Axe":
+                rustz_craftItem(player, {_item})
+    if inventory name of player's current inventory is "&8Raid":
+        cancel event		
+        if name of clicked item is " ":
+            openRecipesDefault(player, 1)
+        else:
+            if name of clicked item contains "&6&n":
+                rustz_craftItem(player, {_item})
+    if inventory name of player's current inventory is "&8Protection":
+        cancel event
+        if name of clicked item is " ":
+            if player's target block is workbench:
+                openRecipesDefault(player, 1)
+        else:
+            if name of clicked item contains "&6&n":
+                rustz_craftItem(player, {_item})
+    if inventory name of player's current inventory is "&8Utility":
+        cancel event
+        if name of clicked item is " ":
+            if player's target block is workbench:
+                openRecipesDefault(player, 1)
+        else:
+            if name of clicked item contains "&6&n":
+                rustz_craftItem(player, {_item})
+
+
+
+function rustz_craftItem(p: player, i: item):
+    craftingPanel({_p})
+    wait 1 second
+    if {_p}'s inventory has space for {_i}:
+#WORKBENCH
+        if {_i} is WOODEN SWORD:
+            if {_p} has 64 diamonds and 64 iron ore:
+                remove 64 diamonds from {_p}'s inventory
+                add a wooden sword to {_p}'s inventory
+                message "%{config::prefix}% %{config::crafting_succ}% Wooden sword" to {_p}
+            else:
+                message "%{config::prefix}% %{config::crafting_requirements_needed}%" to {_p}
+
+
+
+#==========================================================================================================#
+# -------------------------------------------------------------------------------------------------------- #
+#                                              ENTITIES                                                    #
+# -------------------------------------------------------------------------------------------------------- #
+#==========================================================================================================# 
+
+
+on death of player:
+    if event-world is "%{config::world}%":
+        force victim to respawn
+        wait 1 tick
+        randomSpawn(victim)
+
+on death of zombie:
+    if event-world is "%{config::world}%":
+        remove every rotten flesh from drops
+        remove any helmet from drops
+        remove any chestplate from drops
+        remove any leggings from drops
+        remove any boots from drops
+        remove any axe from drops
+        remove any sword from drops
+        remove any shovel from drops
+        remove any hoe from drops
+
+on combust:
+    if event-world is "%{config::world}%":
+        event-entity is zombie:
+            cancel event
+	

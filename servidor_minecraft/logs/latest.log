@@ -1,69 +1,155 @@
-[18:20:26] [ServerMain/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.5+11-Ubuntu-1ubuntu120.04; Ubuntu null) on Linux 6.5.0-1025-azure (amd64)
-[18:20:26] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.1-57-master@b483da4 (2024-09-01T18:09:05Z) for Minecraft 1.21.1
-[18:20:26] [ServerMain/INFO]: [PluginInitializerManager] Initializing plugins...
-[18:20:26] [ServerMain/INFO]: [PluginInitializerManager] Initialized 0 plugins
-[18:20:27] [Paper Plugin Remapper Thread - 1/INFO]: [ReobfServer] Remapping server...
-[18:20:32] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[18:20:33] [ServerMain/INFO]: Found new data pack file/bukkit, loading it automatically
-[18:20:33] [ServerMain/INFO]: Found new data pack paper, loading it automatically
-[18:20:34] [ServerMain/INFO]: No existing world data, creating new world
-[18:20:35] [ServerMain/INFO]: Loaded 1290 recipes
-[18:20:36] [ServerMain/INFO]: Loaded 1399 advancements
-[18:20:36] [Server thread/INFO]: Starting minecraft server version 1.21.1
-[18:20:36] [Server thread/INFO]: Loading properties
-[18:20:36] [Server thread/INFO]: This server is running Paper version 1.21.1-57-master@b483da4 (2024-09-01T18:09:05Z) (Implementing API version 1.21.1-R0.1-SNAPSHOT)
-[18:20:36] [Paper Plugin Remapper Thread - 1/INFO]: [ReobfServer] Done remapping server in 9083ms.
-[18:20:37] [Server thread/INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
-[18:20:37] [Server thread/INFO]: Server Ping Player Sample Count: 12
-[18:20:37] [Server thread/INFO]: Using 4 threads for Netty based IO
-[18:20:38] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 1 worker threads, and population gen parallelism of 1 threads
-[18:20:38] [Server thread/INFO]: Default game type: SURVIVAL
-[18:20:38] [Server thread/INFO]: Generating keypair
-[18:20:38] [Server thread/INFO]: Starting Minecraft server on *:25565
-[18:20:38] [Server thread/INFO]: Using epoll channel type
-[18:20:38] [Server thread/INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
-[18:20:38] [Server thread/INFO]: Paper: Using OpenSSL 1.1.x (Linux x86_64) cipher from Velocity.
-[18:20:38] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
-[18:20:38] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
-[18:20:38] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
-[18:20:38] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
-[18:20:38] [Server thread/INFO]: Preparing level "world"
-[18:20:50] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
-[18:20:57] [Server thread/INFO]: Time elapsed: 6601 ms
-[18:20:57] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether
-[18:20:59] [Server thread/INFO]: Time elapsed: 2274 ms
-[18:20:59] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end
-[18:20:59] [Server thread/INFO]: Time elapsed: 519 ms
-[18:20:59] [Server thread/INFO]: [spark] Starting background profiler...
-[18:21:00] [Server thread/INFO]: Done preparing level "world" (21.445s)
-[18:21:00] [Server thread/INFO]: Running delayed init tasks
-[18:21:00] [Server thread/INFO]: Done (34.354s)! For help, type "help"
-[18:21:00] [Server thread/INFO]: *************************************************************************************
-[18:21:00] [Server thread/INFO]: This is the first time you're starting this server.
-[18:21:00] [Server thread/INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
-[18:21:00] [Server thread/INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
-[18:21:00] [Server thread/INFO]: *************************************************************************************
-[18:21:00] [Server thread/INFO]: Timings Reset
-[18:56:57] [Server thread/INFO]: Stopping the server
-[18:56:57] [Server thread/INFO]: Stopping server
-[18:56:57] [Server thread/INFO]: Saving players
-[18:56:57] [Server thread/INFO]: Saving worlds
-[18:56:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Saved 796 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.43s
-[18:56:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Saved 792 block chunks, 1 entity chunks, 0 poi chunks in world 'world_nether' in 0.27s
-[18:56:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
-[18:56:57] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
-[18:56:58] [Server thread/INFO]: [ChunkHolderManager] Saved 792 block chunks, 10 entity chunks, 0 poi chunks in world 'world_the_end' in 0.22s
-[18:56:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[18:56:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[18:56:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[18:56:58] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[18:58:01] [ServerMain/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.5+11-Ubuntu-1ubuntu120.04; Ubuntu null) on Linux 6.5.0-1025-azure (amd64)
+[18:58:01] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.1-57-master@b483da4 (2024-09-01T18:09:05Z) for Minecraft 1.21.1
+[18:58:01] [ServerMain/INFO]: [PluginInitializerManager] Initializing plugins...
+[18:58:01] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins/SkQuery-4.1.10.jar'...
+[18:58:01] [Paper Plugin Remapper Thread - 3/INFO]: [PluginRemapper] Remapping plugin 'plugins/SkBee-3.6.1.jar'...
+[18:58:01] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Remapping plugin 'plugins/Skellett-2.0.10.jar'...
+[18:58:01] [Paper Plugin Remapper Thread - 0/INFO]: [PluginRemapper] Remapping plugin 'plugins/Skript-2.9.5.jar'...
+[18:58:02] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins/SkQuery-4.1.10.jar' in 1065ms.
+[18:58:02] [Paper Plugin Remapper Thread - 1/INFO]: [PluginRemapper] Done remapping plugin 'plugins/Skellett-2.0.10.jar' in 901ms.
+[18:58:03] [Paper Plugin Remapper Thread - 3/INFO]: [PluginRemapper] Done remapping plugin 'plugins/SkBee-3.6.1.jar' in 1608ms.
+[18:58:03] [Paper Plugin Remapper Thread - 0/INFO]: [PluginRemapper] Done remapping plugin 'plugins/Skript-2.9.5.jar' in 1679ms.
+[18:58:03] [ServerMain/INFO]: [PluginInitializerManager] Initialized 4 plugins
+[18:58:03] [ServerMain/INFO]: [PluginInitializerManager] Bukkit plugins (4):
+ - SkBee (3.6.1), SkQuery (4.1.10), Skellett (2.0.10), Skript (2.9.5)
+[18:58:07] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[18:58:09] [ServerMain/INFO]: Loaded 1290 recipes
+[18:58:09] [ServerMain/INFO]: Loaded 1399 advancements
+[18:58:09] [Server thread/INFO]: Starting minecraft server version 1.21.1
+[18:58:09] [Server thread/INFO]: Loading properties
+[18:58:10] [Server thread/INFO]: This server is running Paper version 1.21.1-57-master@b483da4 (2024-09-01T18:09:05Z) (Implementing API version 1.21.1-R0.1-SNAPSHOT)
+[18:58:10] [Server thread/INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[18:58:10] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[18:58:10] [Server thread/INFO]: Using 4 threads for Netty based IO
+[18:58:11] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 1 worker threads, and population gen parallelism of 1 threads
+[18:58:11] [Server thread/INFO]: Default game type: SURVIVAL
+[18:58:11] [Server thread/INFO]: Generating keypair
+[18:58:11] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:58:11] [Server thread/INFO]: Using epoll channel type
+[18:58:11] [Server thread/INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[18:58:11] [Server thread/INFO]: Paper: Using OpenSSL 1.1.x (Linux x86_64) cipher from Velocity.
+[18:58:12] [Server thread/INFO]: [Skript] Loading server plugin Skript v2.9.5
+[18:58:12] [Server thread/INFO]: [SkBee] Loading server plugin SkBee v3.6.1
+[18:58:12] [Server thread/INFO]: [Skellett] Loading server plugin Skellett v2.0.10
+[18:58:12] [Server thread/INFO]: [SkQuery] Loading server plugin SkQuery v4.1.10
+[18:58:12] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[18:58:12] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[18:58:12] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[18:58:12] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[18:58:12] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[18:58:12] [Server thread/INFO]: Preparing level "world"
+[18:58:12] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[18:58:13] [Server thread/INFO]: Time elapsed: 712 ms
+[18:58:13] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether
+[18:58:14] [Server thread/INFO]: Time elapsed: 1144 ms
+[18:58:14] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end
+[18:58:14] [Server thread/INFO]: Time elapsed: 119 ms
+[18:58:14] [Server thread/INFO]: [Skript] Enabling Skript v2.9.5
+[18:58:14] [Server thread/INFO]: [Skript] Successfully generated the config and the example scripts.
+[18:58:16] [ForkJoinPool.commonPool-worker-1/INFO]: [Skript] You're currently running the latest stable version of Skript.
+[18:58:28] [Server thread/INFO]: [Skript] Loaded 233074 aliases in 11979ms
+[18:58:29] [Server thread/INFO]: [Skript]  ~ created by & © Peter Güttinger aka Njol ~
+[18:58:29] [Server thread/INFO]: [SkBee] Enabling SkBee v3.6.1
+[18:58:30] [Server thread/INFO]: [SkBee] Loading NBTApi...
+[18:58:30] [Server thread/INFO]: [SkBee] [NBTAPI] Found Minecraft: 1.21.1! Trying to find NMS support
+[18:58:30] [Server thread/INFO]: [SkBee] [NBTAPI] NMS support 'MC1_21_R1' loaded!
+[18:58:30] [Server thread/INFO]: [SkBee] Successfully loaded NBTApi!
+[18:58:30] [Server thread/INFO]: [SkBee] NBT Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Text Component Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Advancement Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] BossBar Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Bound Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Damage Source elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Display Entity elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Fishing elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Game Event Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Item Component Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Particle Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] RayTrace elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Recipe Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Scoreboard Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Scoreboard Objective Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Statistic Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Structure Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Minecraft Tag elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Team Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Tick Manager elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Villager Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Virtual Furnace Elements disabled via config
+[18:58:30] [Server thread/INFO]: [SkBee] World Border Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] World Creator Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Chunk Generator Elements successfully loaded
+[18:58:30] [Server thread/INFO]: [SkBee] Loaded (427) elements:
+[18:58:30] [Server thread/INFO]: [SkBee]  - 56 events
+[18:58:30] [Server thread/INFO]: [SkBee]  - 70 effects
+[18:58:30] [Server thread/INFO]: [SkBee]  - 259 expressions
+[18:58:30] [Server thread/INFO]: [SkBee]  - 27 conditions
+[18:58:30] [Server thread/INFO]: [SkBee]  - 15 sections
+[18:58:30] [Server thread/INFO]: [SkBee] Checking for update...
+[18:58:31] [Server thread/INFO]: [SkBee] Plugin is up to date!
+[18:58:31] [Server thread/INFO]: [SkBee] Successfully enabled v3.6.1 in 1.11 seconds
+[18:58:31] [Server thread/INFO]: [Skellett] Enabling Skellett v2.0.10
+[18:58:31] [Server thread/INFO]: [Skellett] config.yml not found, generating a new config!
+[18:58:31] [Server thread/INFO]: [Skellett] CustomEvents.yml not found, generating a new config!
+[18:58:31] [Server thread/INFO]: [Skellett] Syntax.yml not found, generating a new file!
+[18:58:31] [Server thread/INFO]: [Skellett] SyntaxToggles.yml not found, generating a new file!
+[18:58:31] [Server thread/INFO]: [Skellett] Main.PrepareEnchant syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Syntax.Events.AnvilPrepare syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Syntax.Events.AnvilPrepare syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] ItemCooldown syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Main.Maps syntax is for 1.11+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Main.PrepareEnchant syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Main.PrepareEnchant syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Main.PrepareEnchant syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] CollidableState syntax is for 1.9+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Syntax.Events.BrewingFuel syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] SpectralArrow syntax is for 1.10+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Syntax.Events.BrewingFuel syntax is for 1.11.2+ spigot versions!
+[18:58:31] [Server thread/INFO]: [Skellett] Registered 26 Effects, 11 Conditions, 59 Expressions and 16 Events
+[18:58:31] [Server thread/INFO]: [SkQuery] Enabling SkQuery v4.1.10
+[18:58:31] [Server thread/INFO]: [skQuery] Locating classes from SkQuery...
+[18:58:31] [Server thread/INFO]: [skQuery] Beginning to process a total of 117 from SkQuery
+[18:58:31] [Server thread/INFO]: [skQuery] Out of 117 classes, 117 classes were loaded from SkQuery
+[18:58:31] [Server thread/INFO]: [spark] Starting background profiler...
+[18:58:31] [Server thread/INFO]: Done preparing level "world" (19.618s)
+[18:58:31] [Server thread/INFO]: Running delayed init tasks
+[18:58:31] [Server thread/INFO]: [Skript] Loading variables...
+[18:58:31] [Server thread/INFO]: [Skript] Loaded 0 variables in 0.0 seconds
+[18:58:31] [Server thread/INFO]: [Skript] All scripts loaded without errors.
+[18:58:31] [Server thread/INFO]: [Skript]     No scripts were found, maybe you should write some ;)
+[18:58:31] [Server thread/INFO]: [Skript] Finished loading.
+[18:58:31] [Server thread/INFO]: Done (31.564s)! For help, type "help"
+[18:58:31] [Server thread/INFO]: Timings Reset
+[18:59:02] [Server thread/INFO]: [Skript] Can't find the script 'rust-ls' in the scripts folder!
+[18:59:13] [Server thread/INFO]: [Skript] Can't find the script 'rust-ls' in the scripts folder!
+[18:59:18] [Server thread/INFO]: [Skript] Reloading all scripts...
+[18:59:20] [Server thread/INFO]: [Skript] Successfully reloaded all scripts. (1829ms)
+[18:59:24] [Server thread/INFO]: [Skript] Can't find the script 'rust-ls' in the scripts folder!
+[18:59:28] [Server thread/INFO]: [Skript] Can't find the script 'script rust-ls' in the scripts folder!
+[18:59:39] [Server thread/INFO]: Stopping the server
+[18:59:39] [Server thread/INFO]: Stopping server
+[18:59:39] [Server thread/INFO]: [SkQuery] Disabling SkQuery v4.1.10
+[18:59:39] [Server thread/INFO]: [Skellett] Disabling Skellett v2.0.10
+[18:59:39] [Server thread/INFO]: [SkBee] Disabling SkBee v3.6.1
+[18:59:39] [Server thread/INFO]: [Skript] Disabling Skript v2.9.5
+[18:59:39] [Server thread/INFO]: Saving players
+[18:59:39] [Server thread/INFO]: Saving worlds
+[18:59:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saved 49 block chunks, 49 entity chunks, 0 poi chunks in world 'world' in 0.23s
+[18:59:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saved 49 block chunks, 49 entity chunks, 0 poi chunks in world 'world_nether' in 0.09s
+[18:59:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+[18:59:39] [Server thread/INFO]: [ChunkHolderManager] Saved 49 block chunks, 49 entity chunks, 0 poi chunks in world 'world_the_end' in 0.05s
+[18:59:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[18:59:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[18:59:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[18:59:39] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
